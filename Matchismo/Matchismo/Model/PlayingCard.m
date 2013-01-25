@@ -1,10 +1,9 @@
-//
-//  PlayingCard.m
-//  Matchismo
-//
-//  Created by Aleksander B Hansen on 1/25/13.
-//  Copyright (c) 2013 ClearStoneGroup LLC. All rights reserved.
-//
+/*
+PlayingCard.m  
+  Matchismo
+  Created by Aleksander B Hansen on 1/25/13.
+  Copyright (c) 2013 ClearStoneGroup LLC. All rights reserved.
+*/
 
 #import "PlayingCard.h"
 
@@ -17,8 +16,9 @@
     return [rankStrings[self.rank] stringByAppendingString:self.suit];
     
 }
-// when implementing the getter AND the setter you HAVE to synthesize manually!
+/* when implementing the getter AND the setter you HAVE to synthesize manually! */
 @synthesize suit = _suit;
+
 +(NSArray *)validSuits
 {
     return @[@"♥", @"♦", @"♠", @"♣"];
@@ -44,7 +44,7 @@
 -(void) setSuit:(NSString *)suit
 {
     if ([[PlayingCard validSuits] containsObject:suit]) {
-        _suit = _suit;
+        _suit = suit;
     }
 }
 

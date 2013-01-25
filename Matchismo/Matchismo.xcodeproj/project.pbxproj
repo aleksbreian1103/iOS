@@ -22,6 +22,8 @@
 		559D342616B27512006AA9ED /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 559D342516B27512006AA9ED /* Deck.m */; };
 		559D342916B27EB4006AA9ED /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 559D342816B27EB4006AA9ED /* PlayingCard.m */; };
 		559D342C16B287A6006AA9ED /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 559D342B16B287A6006AA9ED /* PlayingCardDeck.m */; };
+		559D343316B2A3ED006AA9ED /* Mesh.png in Resources */ = {isa = PBXBuildFile; fileRef = 559D343116B2A3ED006AA9ED /* Mesh.png */; };
+		559D343416B2A3ED006AA9ED /* MeshRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = 559D343216B2A3ED006AA9ED /* MeshRetina.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +51,8 @@
 		559D342816B27EB4006AA9ED /* PlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCard.m; path = Model/PlayingCard.m; sourceTree = "<group>"; };
 		559D342A16B287A6006AA9ED /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCardDeck.h; path = Model/PlayingCardDeck.h; sourceTree = "<group>"; };
 		559D342B16B287A6006AA9ED /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = Model/PlayingCardDeck.m; sourceTree = "<group>"; };
+		559D343116B2A3ED006AA9ED /* Mesh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mesh.png; sourceTree = "<group>"; };
+		559D343216B2A3ED006AA9ED /* MeshRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeshRetina.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 		5540ACBF16B2306A00C9EE5E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				559D343116B2A3ED006AA9ED /* Mesh.png */,
+				559D343216B2A3ED006AA9ED /* MeshRetina.png */,
 				5540ACC716B2306A00C9EE5E /* CardGameAppDelegate.h */,
 				5540ACC816B2306A00C9EE5E /* CardGameAppDelegate.m */,
 				5540ACC016B2306A00C9EE5E /* Matchismo-Info.plist */,
@@ -184,6 +190,8 @@
 				5540ACCD16B2306A00C9EE5E /* Default@2x.png in Resources */,
 				5540ACCF16B2306A00C9EE5E /* Default-568h@2x.png in Resources */,
 				5540ACD216B2306A00C9EE5E /* MainStoryboard.storyboard in Resources */,
+				559D343316B2A3ED006AA9ED /* Mesh.png in Resources */,
+				559D343416B2A3ED006AA9ED /* MeshRetina.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

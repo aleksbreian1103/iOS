@@ -1,7 +1,7 @@
 /*  CardGameViewController.m
- Matchismo
- Created by Aleksander B Hansen on 1/24/13.
- Copyright (c) 2013 ClearStoneGroup LLC. All rights reserved.
+   Matchismo
+   Created by Aleksander B Hansen on 1/24/13.
+   Copyright (c) 2013 ClearStoneGroup LLC. All rights reserved.
  */
 #import "PlayingCardDeck.h"
 #import "CardGameViewController.h"
@@ -32,6 +32,7 @@
 - (IBAction)flipCard:(UIButton *)sender
 {
     sender.selected = !sender.isSelected;
+    
     if (sender.selected) {
         Card *card = [self.deck drawRandomCard];
         if (card) {
