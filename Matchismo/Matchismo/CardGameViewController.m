@@ -37,8 +37,9 @@
         Card *card = [self.deck drawRandomCard];
         if (card) {
             self.flipCount++;
-            [sender setTitle:[card contents] forState:UIControlStateSelected];
-            
+            [sender setTitle:card.contents forState:UIControlStateSelected];
+            [sender setImage:[UIImage imageNamed:card.imageName] forState:UIControlStateSelected];
+
         }
     }
 }
