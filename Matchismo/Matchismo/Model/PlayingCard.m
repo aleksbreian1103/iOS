@@ -52,5 +52,9 @@ PlayingCard.m
 {
     return _suit ? _suit : @"?";
 }
+-(NSString *)imageName
+{
+    return [self.contents stringByAppendingString:@"-75.png"];
+}
 
 @end

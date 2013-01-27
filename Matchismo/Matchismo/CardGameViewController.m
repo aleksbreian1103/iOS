@@ -37,10 +37,8 @@
         Card *card = [self.deck drawRandomCard];
         if (card) {
             self.flipCount++;
-            [sender setTitle:[card contents] forState:UIControlStateSelected];
-            NSString *imageName = [card.contents stringByAppendingString:@"-75.png"];
-            NSLog(@"%@", imageName);
-            [sender setImage:[UIImage imageNamed:imageName] forState:UIControlStateSelected];
+            [sender setTitle:card.contents forState:UIControlStateSelected];
+            [sender setImage:[UIImage imageNamed:card.imageName] forState:UIControlStateSelected];
 
         }
     }
