@@ -219,16 +219,9 @@
 		5540ACBE16B2306A00C9EE5E /* Matchismo */ = {
 			isa = PBXGroup;
 			children = (
-				E48BFB5016B4A5CC00A85A8C /* 75 */,
+				E45E1F1716B50F1700D70718 /* Resources */,
 				5540ACD016B2306A00C9EE5E /* MainStoryboard.storyboard */,
-				559D342A16B287A6006AA9ED /* PlayingCardDeck.h */,
-				559D342B16B287A6006AA9ED /* PlayingCardDeck.m */,
-				559D342716B27EB4006AA9ED /* PlayingCard.h */,
-				559D342816B27EB4006AA9ED /* PlayingCard.m */,
-				559D342016B274C8006AA9ED /* Card.h */,
-				559D342116B274C8006AA9ED /* Card.m */,
-				559D342416B27512006AA9ED /* Deck.h */,
-				559D342516B27512006AA9ED /* Deck.m */,
+				E45E1F1516B50EFE00D70718 /* Model */,
 				5540ACD316B2306A00C9EE5E /* CardGameViewController.h */,
 				5540ACD416B2306A00C9EE5E /* CardGameViewController.m */,
 				5540ACBF16B2306A00C9EE5E /* Supporting Files */,
@@ -239,8 +232,6 @@
 		5540ACBF16B2306A00C9EE5E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				559D343116B2A3ED006AA9ED /* Mesh.png */,
-				559D343216B2A3ED006AA9ED /* MeshRetina.png */,
 				5540ACC716B2306A00C9EE5E /* CardGameAppDelegate.h */,
 				5540ACC816B2306A00C9EE5E /* CardGameAppDelegate.m */,
 				5540ACC016B2306A00C9EE5E /* Matchismo-Info.plist */,
@@ -252,6 +243,31 @@
 				5540ACCE16B2306A00C9EE5E /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E45E1F1516B50EFE00D70718 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				559D342A16B287A6006AA9ED /* PlayingCardDeck.h */,
+				559D342B16B287A6006AA9ED /* PlayingCardDeck.m */,
+				559D342716B27EB4006AA9ED /* PlayingCard.h */,
+				559D342816B27EB4006AA9ED /* PlayingCard.m */,
+				559D342016B274C8006AA9ED /* Card.h */,
+				559D342116B274C8006AA9ED /* Card.m */,
+				559D342416B27512006AA9ED /* Deck.h */,
+				559D342516B27512006AA9ED /* Deck.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E45E1F1716B50F1700D70718 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				559D343116B2A3ED006AA9ED /* Mesh.png */,
+				559D343216B2A3ED006AA9ED /* MeshRetina.png */,
+				E48BFB5016B4A5CC00A85A8C /* 75 */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		E48BFB5016B4A5CC00A85A8C /* 75 */ = {
