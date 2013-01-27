@@ -13,7 +13,7 @@ PlayingCard.m
 -(NSString *)contents
 {
     NSArray *rankStrings = [PlayingCard rankStrings];
-    return [rankStrings[self.rank] stringByAppendingString:self.suit];
+    return [NSString stringWithFormat:@"%@-%@", self.suit, rankStrings[self.rank]];
     
 }
 /* when implementing the getter AND the setter you HAVE to synthesize manually! */
@@ -21,13 +21,13 @@ PlayingCard.m
 
 +(NSArray *)validSuits
 {
-    return @[@"♥", @"♦", @"♠", @"♣"];
+    return @[@"spades", @"hearts", @"diamonds", @"clubs"];
 }
 
 
 +(NSArray *)rankStrings
 {
-    return @[@"?", @"A", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"J", @"Q", @"K"];
+    return @[@"?", @"a", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"j", @"q", @"k"];
 }
 
 +(NSUInteger)maxRank {
