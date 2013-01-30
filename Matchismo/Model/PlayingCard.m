@@ -12,11 +12,24 @@
 
 @synthesize suit = _suit;
 
-- (NSString *)contents
+- (int)match:(NSArray *)otherCards
 {
-    NSArray *rankStrings = [PlayingCard rankStrings];
-    return [rankStrings[self.rank] stringByAppendingString:self.suit];
+    int score = 0;
+    
+    if (otherCards.count == 1) {
+        PlayingCard *otherCard = [otherCards lastObject];
+        if ([otherCard.suit isEqualToString:self.suit]) {
+            score = 1;
+        }
+        else if (otherCard.rank == self.rank) {
+            score = 4;
+        }
+    }
+    
+    return score;
 }
+
+#pragma mark - Utility
 
 + (NSArray *)validSuits
 {
@@ -41,11 +54,19 @@
     return [self rankStrings].count - 1;
 }
 
+#pragma mark - Accessors
+
 - (void)setRank:(NSUInteger)rank
 {
     if (rank <= [PlayingCard maxRank]) {
         _rank = rank;
     }
+}
+
+- (NSString *)contents
+{
+    NSArray *rankStrings = [PlayingCard rankStrings];
+    return [rankStrings[self.rank] stringByAppendingString:self.suit];
 }
 
 - (void)setSuit:(NSString *)suit
