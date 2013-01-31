@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Machismo/model/PlayingCard.m"
-         timestampString = "380783584.659853"
+         timestampString = "381299054.119747"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "41"
-         endingLineNumber = "41"
+         startingLineNumber = "64"
+         endingLineNumber = "64"
          landmarkName = "-setSuit:"
          landmarkType = "5">
       </FileBreakpoint>

@@ -24,6 +24,9 @@
 }
 
 
-
+- (NSString *) description
+{
+    return self.contents;
+}
 
 @end
