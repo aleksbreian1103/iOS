@@ -12,7 +12,9 @@
 
 @interface CardGameViewController ()
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSegmentControl;
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (nonatomic) int flipCount;
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
@@ -37,9 +39,18 @@
 
 #pragma mark - Actions
 
+- (IBAction)deal:(id)sender {
+    self.gameModeSegmentControl.enabled = YES;
+    self.flipCount = 0;
+    self.statusLabel.text = nil;
+    self.game = nil;
+    [self updateUI];
+}
+
 - (IBAction)flipCard:(UIButton *)sender
 {
-    [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
+    self.gameModeSegmentControl.enabled = NO;
+    self.statusLabel.text = [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     self.flipCount++;
     [self updateUI];
 }
@@ -64,6 +75,14 @@
 {
     _flipCount = flipCount;
     self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
+}
+
+#pragma mark - Lifecycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.statusLabel.text = @"match cards of the same rank or suite";
 }
 
 @end

@@ -16,7 +16,7 @@
 @end
 
 #define FLIP_COST 1
-#define MATCH_BONUS 4
+#define MATCH_BONUS 5
 #define MISMATCH_PENALTY 2 
 
 @implementation CardMatchingGame
@@ -28,9 +28,10 @@
     return (index < self.cards.count) ? self.cards[index] : nil;
 }
 
-- (void)flipCardAtIndex:(NSUInteger)index
+- (NSString *)flipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
+    NSString *status = nil;
     
     if (!card.isUnplayable) {
         if (!card.isFaceUp) {
@@ -41,10 +42,12 @@
                         otherCard.unplayable = YES;
                         card.unplayable = YES;
                         self.score += matchScore * MATCH_BONUS;
+                        status = [NSString stringWithFormat:@"matched %@ and %@ for %d points", card, otherCard, matchScore * MATCH_BONUS];
                     }
                     else {
                         otherCard.faceUp = NO;
                         self.score -= MISMATCH_PENALTY;
+                        status = [NSString stringWithFormat:@"%@ and %@ don't match: %d points penalty", card, otherCard, MISMATCH_PENALTY];
                     }
                 }
             }
@@ -52,6 +55,7 @@
         }
         card.faceUp = !card.isFaceUp;
     }
+    return status;
 }
 
 #pragma mark - Accessors

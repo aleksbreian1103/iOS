@@ -14,7 +14,7 @@
 @property (nonatomic, readonly) int score;
 
 - (id)initWithCardCount:(NSUInteger)cardCount usingDeck:(Deck *)deck;
-- (void)flipCardAtIndex:(NSUInteger)index;
+- (NSString *)flipCardAtIndex:(NSUInteger)index;
 - (Card *)cardAtIndex:(NSUInteger)index;
 
 @end
