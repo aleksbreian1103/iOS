@@ -74,7 +74,7 @@
             self.score -= FLIP_COST;
             self.moveDescription = [NSString stringWithFormat:@"You flipped %@", card.contents];
         }
-        else
+        else if ([faceUpCards count] == self.requiredMatches)
         {
             int matchscore = [card match:faceUpCards];
             
@@ -93,6 +93,7 @@
                     c.unplayable = YES;
                     card.unplayable = YES;
                 }
+                
                 NSString *matches = [faceUpCards componentsJoinedByString:@"&"];
                 self.moveDescription = [NSString stringWithFormat:@"Matched %@ for %d points!", matches,
                                         matchscore * MATCH_BONUS];
