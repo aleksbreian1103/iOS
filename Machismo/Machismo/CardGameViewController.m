@@ -9,7 +9,8 @@
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
-#import "GameTurnHistory.h"
+
+
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
@@ -21,15 +22,30 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *matchNumSwitch;
 @property (nonatomic) float sliderValue;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
-@property (strong, nonatomic) NSMutableArray *gameTurnHistory;
+@property (nonatomic, strong) NSMutableArray *moveHistory;
 @end
 
 @implementation CardGameViewController
 
-- (NSMutableArray *) gameTurnHistory
+- (NSMutableArray *) moveHistory
 {
-    if (!_gameTurnHistory) _gameTurnHistory = [[NSMutableArray alloc] init];
-    return _gameTurnHistory;
+    if (!_moveHistory) _moveHistory = [[NSMutableArray alloc] init];
+    return _moveHistory;
+}
+
+- (IBAction)sliderValueChanged:(UISlider *)sender
+{
+    int index = (int) sender.value;
+    NSLog(@"Slider index is: %d", index);
+    
+    if (index < 0 || (index > self.flipCount - 1)) return;
+    
+    if (index < self.flipCount-1)
+        self.cardDescLabel.alpha = 0.3;
+    else
+        self.cardDescLabel.alpha = 1.0;
+    
+    self.cardDescLabel.text = [self.moveHistory objectAtIndex: index];
 }
 
 - (IBAction)deal:(id)sender
@@ -37,6 +53,9 @@
     self.game = [[CardMatchingGame alloc] initWithCardCount:self.cardButtons.count usingDeck:[[PlayingCardDeck alloc] init]];
     
     [self.matchNumSwitch setEnabled:YES];
+    self.flipCount = 0;
+    self.sliderValue = 0;
+    self.moveHistory = nil;
     [self updateUI];
 }
 
@@ -60,10 +79,6 @@
     _cardButtons = cardButtons;
     [self updateUI];
 }
-
-
-
-
 
 - (void) updateUI
 {
@@ -92,8 +107,8 @@
 
     
     [self.slider setMinimumValue:0.0f];
-    [self.slider setMaximumValue:50.0f];
-    [self.slider setValue: self.sliderValue animated:YES];
+    [self.slider setMaximumValue:(float) self.flipCount];
+
 
 }
 
@@ -108,11 +123,14 @@
 {
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject: sender]];
     self.flipCount++;
-    self.sliderValue++;
     [self.matchNumSwitch setEnabled:NO];
+
     [self updateUI];
+    [self.slider setValue: self.flipCount animated:NO];
+    self.cardDescLabel.alpha = 1.0;
     
-    GameTurnHistory *hist = [[GameTurnHistory alloc] init];
+    [self.moveHistory addObject:self.game.moveDescription];
 }
+
 
 @end
