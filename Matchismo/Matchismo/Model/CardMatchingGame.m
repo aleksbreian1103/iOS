@@ -83,7 +83,7 @@
                 }
                 card.faceUp = YES;
                 self.score -= MISMATCH_PENALTY;
-                NSString *mismatches = [faceUpCards componentsJoinedByString:@"&"];
+                NSString *mismatches = [faceUpCards componentsJoinedByString:@" & "];
                 self.moveDescription = [NSString stringWithFormat:@"%@ don't match! %d point penalty", mismatches, MISMATCH_PENALTY];
             }
             else {
@@ -92,7 +92,7 @@
                     c.unplayable = YES;
                     card.unplayable = YES;
                 }
-                NSString *matches = [faceUpCards componentsJoinedByString:@"&"];
+                NSString *matches = [faceUpCards componentsJoinedByString:@" & "];
                 self.moveDescription = [NSString stringWithFormat:@"Matched %@ for %d points!", matches, matchscore * MATCH_BONUS];
             }
         }
