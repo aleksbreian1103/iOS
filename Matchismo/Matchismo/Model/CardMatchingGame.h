@@ -12,12 +12,15 @@
 
 @interface CardMatchingGame : NSObject
     /* Remember NSUInteger is typedef'ed */
-- (id)initWithCardCount:(NSUInteger) cardCount usingDeck:(Deck *) deck;
+- (id)initWithCardCount:(NSUInteger) cardCount
+              usingDeck:(Deck *) deck;
 
 - (void) flipCardAtIndex:(NSUInteger) index;
 
 - (Card *) cardAtIndex:(NSUInteger) index;
 
 @property (nonatomic, readonly) int score;
+@property (nonatomic) int requiredMatches;
+@property (nonatomic, strong) NSString *moveDescription;
 
 @end

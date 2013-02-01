@@ -26,5 +26,9 @@
     return score;
 }
 
+-(NSString *) description {
+    return self.contents;
+}
+
 
 @end

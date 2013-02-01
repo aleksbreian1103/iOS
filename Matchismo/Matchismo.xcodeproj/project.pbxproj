@@ -25,6 +25,8 @@
 		559D342C16B287A6006AA9ED /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = 559D342B16B287A6006AA9ED /* PlayingCardDeck.m */; };
 		559D343316B2A3ED006AA9ED /* Mesh.png in Resources */ = {isa = PBXBuildFile; fileRef = 559D343116B2A3ED006AA9ED /* Mesh.png */; };
 		559D343416B2A3ED006AA9ED /* MeshRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = 559D343216B2A3ED006AA9ED /* MeshRetina.png */; };
+		55D9C3AD16BB69F70065EF45 /* GameTurnHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D9C3AC16BB69F70065EF45 /* GameTurnHistory.m */; };
+		55D9C3AF16BB7CA00065EF45 /* th-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 55D9C3AE16BB7C9F0065EF45 /* th-1.jpeg */; };
 		E48BFB8D16B4A5CC00A85A8C /* back-blue-75-1.png in Resources */ = {isa = PBXBuildFile; fileRef = E48BFB5116B4A5CC00A85A8C /* back-blue-75-1.png */; };
 		E48BFB8E16B4A5CC00A85A8C /* back-blue-75-2.png in Resources */ = {isa = PBXBuildFile; fileRef = E48BFB5216B4A5CC00A85A8C /* back-blue-75-2.png */; };
 		E48BFB8F16B4A5CC00A85A8C /* back-blue-75-3.png in Resources */ = {isa = PBXBuildFile; fileRef = E48BFB5316B4A5CC00A85A8C /* back-blue-75-3.png */; };
@@ -116,6 +118,9 @@
 		559D342B16B287A6006AA9ED /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = Model/PlayingCardDeck.m; sourceTree = "<group>"; };
 		559D343116B2A3ED006AA9ED /* Mesh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mesh.png; sourceTree = "<group>"; };
 		559D343216B2A3ED006AA9ED /* MeshRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MeshRetina.png; sourceTree = "<group>"; };
+		55D9C3AB16BB69F70065EF45 /* GameTurnHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTurnHistory.h; sourceTree = "<group>"; };
+		55D9C3AC16BB69F70065EF45 /* GameTurnHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTurnHistory.m; sourceTree = "<group>"; };
+		55D9C3AE16BB7C9F0065EF45 /* th-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "th-1.jpeg"; sourceTree = "<group>"; };
 		E48BFB5116B4A5CC00A85A8C /* back-blue-75-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-blue-75-1.png"; sourceTree = "<group>"; };
 		E48BFB5216B4A5CC00A85A8C /* back-blue-75-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-blue-75-2.png"; sourceTree = "<group>"; };
 		E48BFB5316B4A5CC00A85A8C /* back-blue-75-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-blue-75-3.png"; sourceTree = "<group>"; };
@@ -222,6 +227,7 @@
 		5540ACBE16B2306A00C9EE5E /* Matchismo */ = {
 			isa = PBXGroup;
 			children = (
+				55D9C3AE16BB7C9F0065EF45 /* th-1.jpeg */,
 				E45E1F1716B50F1700D70718 /* Resources */,
 				5540ACD016B2306A00C9EE5E /* MainStoryboard.storyboard */,
 				E45E1F1516B50EFE00D70718 /* Model */,
@@ -251,6 +257,8 @@
 		E45E1F1516B50EFE00D70718 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				55D9C3AB16BB69F70065EF45 /* GameTurnHistory.h */,
+				55D9C3AC16BB69F70065EF45 /* GameTurnHistory.m */,
 				553E859B16B9F142009A3BFE /* CardMatchingGame.h */,
 				553E859C16B9F142009A3BFE /* CardMatchingGame.m */,
 				559D342A16B287A6006AA9ED /* PlayingCardDeck.h */,
@@ -461,6 +469,7 @@
 				E48BFBC616B4A5CC00A85A8C /* spades-j-75.png in Resources */,
 				E48BFBC716B4A5CC00A85A8C /* spades-k-75.png in Resources */,
 				E48BFBC816B4A5CC00A85A8C /* spades-q-75.png in Resources */,
+				55D9C3AF16BB7CA00065EF45 /* th-1.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +488,7 @@
 				559D342916B27EB4006AA9ED /* PlayingCard.m in Sources */,
 				559D342C16B287A6006AA9ED /* PlayingCardDeck.m in Sources */,
 				553E859D16B9F142009A3BFE /* CardMatchingGame.m in Sources */,
+				55D9C3AD16BB69F70065EF45 /* GameTurnHistory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
