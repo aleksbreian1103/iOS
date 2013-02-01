@@ -17,9 +17,10 @@ enum GameMode {
 @interface CardMatchingGame : NSObject
 
 @property (nonatomic, readonly) int score;
-@property (nonatomic) enum GameMode gameMode;
 
 - (id)initWithCardCount:(NSUInteger)cardCount andGameMode:(enum GameMode)gameMode usingDeck:(Deck *)deck;
+
+
 - (NSString *)flipCardAtIndex:(NSUInteger)index;
 - (Card *)cardAtIndex:(NSUInteger)index;
 

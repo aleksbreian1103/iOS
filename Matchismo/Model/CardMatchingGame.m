@@ -12,16 +12,19 @@
 
 @interface CardMatchingGame()
 
+// Keeps track of how many cards
+// are being matched this game
+@property (nonatomic) enum GameMode gameMode;
+
 @property (nonatomic, readwrite) int score;
 @property (nonatomic, strong) NSMutableArray *cards;
 @property (nonatomic) NSUInteger flipCost;
+@property (nonatomic) NSUInteger matchBonus;
+@property (nonatomic) NSUInteger mismatchPenalty;
 
 @end
 
 @implementation CardMatchingGame
-
-#define MATCH_BONUS 5
-#define MISMATCH_PENALTY 2
 
 #pragma mark - Game Logic
 
@@ -29,6 +32,8 @@
 {
     BOOL gameOver = NO;
     
+    // Getting an array of cards
+    // that haven't been played yet
     NSMutableArray *unplayedCards = [[NSMutableArray alloc] init];
     for (Card *card in self.cards) {
         if (!card.isUnplayable) {
@@ -61,10 +66,10 @@
             // Subtrcating duplicate counts
             avalableMatches -= [unplayedCards count];
         }
-        // * terrible performance, worse than O(n^3)
-        // worst case for the game ~343 enumerations/flip,
-        // however need to test on the phone to see if worth optimising
         else if (self.gameMode == threeCards) {
+            // * terrible performance, worse than O(n^3)
+            // worst case for the game ~400+ enumerations/flip,
+            // however need to test on the phone to see if worth optimising
             NSMutableSet *threeCardCombinations = [[NSMutableSet alloc] init];
             for (Card *cardOne in unplayedCards) {
                 for (Card *cardTwo in unplayedCards) {
@@ -84,11 +89,11 @@
             }
         }
     
-        gameOver = (avalableMatches) ? NO : YES;
+        gameOver = (avalableMatches) ? NO : YES; // no avalable matches = game over
     }
 
     // Disabling some game fatures
-    // since the game is over
+    // if the game is over
     if (gameOver) {
         self.flipCost = 0;
         for (Card *card in unplayedCards) {
@@ -110,13 +115,13 @@
                     if (matchScore) {
                         otherCard.unplayable = YES;
                         card.unplayable = YES;
-                        self.score += matchScore * MATCH_BONUS;
-                        status = [NSString stringWithFormat:@"matched %@ and %@ for %d points", card, otherCard, matchScore * MATCH_BONUS];
+                        self.score += matchScore * self.matchBonus;
+                        status = [NSString stringWithFormat:@"matched %@ and %@ for %d points", card, otherCard, matchScore * self.matchBonus];
                     }
                     else {
                         otherCard.faceUp = NO;
-                        self.score -= MISMATCH_PENALTY;
-                        status = [NSString stringWithFormat:@"%@ and %@ don't match: %d points penalty", card, otherCard, MISMATCH_PENALTY];
+                        self.score -= self.mismatchPenalty;
+                        status = [NSString stringWithFormat:@"%@ and %@ don't match: %d points penalty", card, otherCard, self.mismatchPenalty];
                     }
                 }
             }
@@ -133,6 +138,8 @@
     NSString *status = nil;
     if (!card.isUnplayable) {
         if (!card.isFaceUp) {
+            // otherCards array has to keep 2 other cards,
+            // since this is a three card flip logic
             NSMutableArray *otherCards = [[NSMutableArray alloc] init];
             for (Card *otherCard in self.cards) {
                 if (otherCard.isFaceUp && !otherCard.isUnplayable) {
@@ -145,15 +152,15 @@
                                 card.unplayable = YES;
                             }
                             card.unplayable = YES;
-                            self.score += matchScore * MATCH_BONUS;
-                            status = [NSString stringWithFormat:@"matched %@ %@ %@ for %d points", card, otherCards[0], otherCards[1], matchScore * MATCH_BONUS];
+                            self.score += matchScore * self.matchBonus;
+                            status = [NSString stringWithFormat:@"matched %@ %@ %@ for %d points", card, otherCards[0], otherCards[1], matchScore * self.matchBonus];
                         }
                         else {
                             for (Card *card in otherCards) {
                                 card.faceUp = NO;
                             }
-                            self.score -= MISMATCH_PENALTY;
-                            status = [NSString stringWithFormat:@"%@ %@ %@ don't match: %d points penalty", card, otherCards[0], otherCards[1], MISMATCH_PENALTY];
+                            self.score -= self.mismatchPenalty;
+                            status = [NSString stringWithFormat:@"%@ %@ %@ don't match: %d points penalty", card, otherCards[0], otherCards[1], self.mismatchPenalty];
                         }
                     }
                 }
@@ -199,7 +206,11 @@
     self = [super init];
     
     if (self) {
+        // Initializing game settings
         self.flipCost = 1;
+        self.matchBonus = 5;
+        self.mismatchPenalty = 2;
+        
         self.gameMode = gameMode;
         for (int i = 0; i < cardCount; i++) {
             Card *card = [deck drawRandomCard];

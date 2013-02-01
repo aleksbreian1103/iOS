@@ -16,6 +16,7 @@
 {
     int score = 0;
     
+    // Two card match
     if (otherCards.count == 1) {
         PlayingCard *otherCard = [otherCards lastObject];
         if ([otherCard.suit isEqualToString:self.suit]) {
@@ -25,9 +26,10 @@
             score = 4;
         }
     }
+    // Three card match
     else if (otherCards.count == 2) {
-        PlayingCard *otherCardOne = otherCards[otherCards.count - 1];
-        PlayingCard *otherCardTwo = otherCards[otherCards.count - 2];
+        PlayingCard *otherCardOne = otherCards[0];
+        PlayingCard *otherCardTwo = otherCards[1];
         if ([otherCardOne.suit isEqualToString:self.suit] && [otherCardTwo.suit isEqualToString:self.suit]) {
             score = 4;
         }

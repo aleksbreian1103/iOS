@@ -35,9 +35,11 @@
     return destImage;
 }
 
+// Synchronises Model with the View
 - (void)updateUI
 {
     UIImage *cardBackImage = [UIImage imageNamed:@"CardBack.jpg"];
+    // Shrinking image to the size of the button
     cardBackImage = [self imageWithImage:cardBackImage convertToSize:[self.cardButtons[0] size]];
     
     for (UIButton *cardButton in self.cardButtons) {
@@ -59,11 +61,12 @@
 
 #pragma mark - Actions
 
+// Resets UI and starts a new game
 - (IBAction)deal:(id)sender {
     self.gameModeSegmentControl.enabled = YES;
     self.flipCount = 0;
     self.statusLabel.text = @"match cards of the same rank or suite";
-    self.game = nil;
+    self.game = nil; // note: new game creates @ accessor for game
     [self updateUI];
 }
 
@@ -81,11 +84,15 @@
     // Just gets rid of an old game
     // so it can crate a new one
     // with desired game mode
-    self.game = nil;
+    self.game = nil; // note: new game creates @ accessor for game
 }
 
 - (enum GameMode)gameMode
 {
+    // gameMode returns value according to the
+    // segmentControl's selected index
+    // 0 - twoCard game (default)
+    // 1 - threeCard game
     if (self.gameModeSegmentControl.selectedSegmentIndex == 1) {
         return threeCards;
     }
@@ -121,6 +128,7 @@
     [super viewDidLoad];
     self.statusLabel.text = @"match cards of the same rank or suite";
     
+    // Setting insets for images on card buttons
     UIEdgeInsets insets = UIEdgeInsetsMake(5, 6, 5, 6);
     for (UIButton *cardButton in self.cardButtons) {
         [cardButton setImageEdgeInsets:insets];
