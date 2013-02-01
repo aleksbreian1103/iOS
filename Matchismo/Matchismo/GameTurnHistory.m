@@ -1,9 +1,8 @@
 //
 //  GameTurnHistory.m
 //  Machismo
-//
-//  Created by John Ramsey, Jr on 1/31/13.
-//  Copyright (c) 2013 RamFam. All rights reserved.
+//  Created by Aleksander B Hansen on 1/30/13.
+//  Copyright (c) 2013 ClearStoneGroup LLC. All rights reserved.
 //
 
 #import "GameTurnHistory.h"
