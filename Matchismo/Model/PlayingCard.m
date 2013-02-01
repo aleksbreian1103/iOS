@@ -19,10 +19,20 @@
     if (otherCards.count == 1) {
         PlayingCard *otherCard = [otherCards lastObject];
         if ([otherCard.suit isEqualToString:self.suit]) {
-            score = 1;
+            score = 2;
         }
         else if (otherCard.rank == self.rank) {
             score = 4;
+        }
+    }
+    else if (otherCards.count == 2) {
+        PlayingCard *otherCardOne = otherCards[otherCards.count - 1];
+        PlayingCard *otherCardTwo = otherCards[otherCards.count - 2];
+        if ([otherCardOne.suit isEqualToString:self.suit] && [otherCardTwo.suit isEqualToString:self.suit]) {
+            score = 4;
+        }
+        else if (otherCardOne.rank == self.rank && otherCardTwo.rank == self.rank) {
+            score = 8;
         }
     }
     

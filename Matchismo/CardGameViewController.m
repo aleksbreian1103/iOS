@@ -60,7 +60,7 @@
 - (CardMatchingGame *)game
 {
     if (!_game) {
-        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[PlayingCardDeck alloc] init]];
+        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] andGameMode:threeCards usingDeck:[[PlayingCardDeck alloc] init]];
     }
     return _game;
 }

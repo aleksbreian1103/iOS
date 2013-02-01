@@ -99,8 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				83EEBE6D16B943C0002181E3 /* Model */,
-				83EEBE5616B93A26002181E3 /* CardGameAppDelegate.h */,
-				83EEBE5716B93A26002181E3 /* CardGameAppDelegate.m */,
 				83EEBE5F16B93A26002181E3 /* MainStoryboard.storyboard */,
 				83EEBE6216B93A26002181E3 /* CardGameViewController.h */,
 				83EEBE6316B93A26002181E3 /* CardGameViewController.m */,
@@ -112,6 +110,8 @@
 		83EEBE4E16B93A26002181E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				83EEBE5616B93A26002181E3 /* CardGameAppDelegate.h */,
+				83EEBE5716B93A26002181E3 /* CardGameAppDelegate.m */,
 				83EEBE4F16B93A26002181E3 /* Matchismo-Info.plist */,
 				83EEBE5016B93A26002181E3 /* InfoPlist.strings */,
 				83EEBE5316B93A26002181E3 /* main.m */,
@@ -337,6 +337,7 @@
 				83EEBE6916B93A26002181E3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
