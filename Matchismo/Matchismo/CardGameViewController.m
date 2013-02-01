@@ -1,7 +1,7 @@
 /*  CardGameViewController.m
-   Matchismo
-   Created by Aleksander B Hansen on 1/24/13.
-   Copyright (c) 2013 ClearStoneGroup LLC. All rights reserved.
+ Matchismo
+ Created by Aleksander B Hansen on 1/24/13.
+ Copyright (c) 2013 ClearStoneGroup LLC. All rights reserved.
  */
 #import "PlayingCardDeck.h"
 #import "CardGameViewController.h"
@@ -14,6 +14,7 @@
 @property (nonatomic) int flipCount;
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (strong, nonatomic) PlayingCardDeck *deck;
 
 @property (nonatomic) float sliderValue;
 @property (weak, nonatomic) IBOutlet UILabel *cardDescLabel;
@@ -25,6 +26,15 @@
 @end
 
 @implementation CardGameViewController
+
+- (PlayingCardDeck *) deck
+{
+    if (!_deck) {
+        _deck = [[PlayingCardDeck alloc] init];
+    }
+    
+    return _deck;
+}
 
 - (NSMutableArray *) gameTurnHistory
 {
@@ -65,7 +75,6 @@
 
 - (void) updateUI
 {
-    UIImage *image = [UIImage imageNamed:@"th-1.jpeg"];
     
     for (UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
@@ -76,11 +85,11 @@
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
         if (!card.isFaceUp) {
-            [cardButton setImage:image forState:UIControlStateNormal];
-            cardButton.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+            
         }
         else {
-            [cardButton setImage:nil forState:UIControlStateNormal];
+               [cardButton setTitle:card.contents forState:UIControlStateSelected];
+        [cardButton setImage:[UIImage imageNamed:card.imageName] forState:UIControlStateSelected];
         }
         
     }
@@ -104,13 +113,23 @@
 
 - (IBAction)flipCard:(UIButton *)sender
 {
-    [self.game flipCardAtIndex:[self.cardButtons indexOfObject: sender]];
-    self.flipCount++;
-    self.sliderValue++;
-    [self.matchNumSwitch setEnabled:NO];
-    [self updateUI];
+    sender.selected = !sender.isSelected;
     
-
+    if (sender.selected) {
+        Card *card = [self.deck drawRandomCard];
+        if (card) {
+            self.flipCount++;
+            [sender setTitle:card.contents forState:UIControlStateSelected];
+            [sender setImage:[UIImage imageNamed:card.imageName] forState:UIControlStateSelected];
+            [self.game flipCardAtIndex:[self.cardButtons indexOfObject: sender]];
+            self.flipCount++;
+            self.sliderValue++;
+            [self.matchNumSwitch setEnabled:NO];
+            [self updateUI];
+            
+        }
+    }
 }
+
 
 @end

@@ -34,18 +34,17 @@
     return score;
 }
 
-- (NSString *) contents
+-(NSString *)contents
 {
     NSArray *rankStrings = [PlayingCard rankStrings];
-    return [rankStrings[self.rank] stringByAppendingString:self.suit];
+    return [NSString stringWithFormat:@"%@-%@", self.suit, rankStrings[self.rank]];
 }
-
 
 @synthesize suit = _suit;
 
-+ (NSArray *) validSuits
++(NSArray *)validSuits
 {
-    return @[@"♠",@"♦",@"♣",@"♥"];
+    return @[@"spades", @"hearts", @"diamonds", @"clubs"];
 }
 
 +(NSArray *)rankStrings
@@ -62,6 +61,12 @@
     return [self rankStrings].count-1;
 }
 
+-(void)setRank:(NSUInteger)rank
+{
+    if (rank <= [PlayingCard maxRank]) {
+        _rank = rank;
+    }
+}
 
 - (void) setSuit:(NSString *) suit
 {
@@ -71,12 +76,14 @@
 }
 
 
-
-
 - (NSString *) suit
 {
     return _suit ? _suit : @"?";
 }
 
+-(NSString *)imageName
+{
+    return [self.contents stringByAppendingString:@"-75.png"];
+}
 
 @end

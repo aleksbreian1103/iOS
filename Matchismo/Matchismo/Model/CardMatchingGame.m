@@ -93,8 +93,7 @@
                     card.unplayable = YES;
                 }
                 NSString *matches = [faceUpCards componentsJoinedByString:@"&"];
-                self.moveDescription = [NSString stringWithFormat:@"Matched %@ for %d points!", matches,
-                                        matchscore * MATCH_BONUS];
+                self.moveDescription = [NSString stringWithFormat:@"Matched %@ for %d points!", matches, matchscore * MATCH_BONUS];
             }
         }
         
