@@ -61,6 +61,10 @@
     [self updateUI];
 }
 
+
+
+
+
 - (void) updateUI
 {
     UIImage *image = [UIImage imageNamed:@"th-2.jpeg"];
