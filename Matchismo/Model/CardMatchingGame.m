@@ -8,8 +8,6 @@
 
 #import "CardMatchingGame.h"
 
-
-
 @interface CardMatchingGame()
 
 // Keeps track of how many cards
@@ -50,7 +48,7 @@
     else if ([unplayedCards count] > 8) {
         gameOver = NO;
     }
-    // Code below checks for avalable matches
+    // Code below checks for avalable matches,
     // if there are none, then the game is over
     else {
         NSUInteger avalableMatches = 0;
