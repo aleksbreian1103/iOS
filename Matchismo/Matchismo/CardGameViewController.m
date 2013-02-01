@@ -110,7 +110,7 @@
     [self.matchNumSwitch setEnabled:NO];
     [self updateUI];
     
-    GameTurnHistory *hist = [[GameTurnHistory alloc] init];
+
 }
 
 @end
