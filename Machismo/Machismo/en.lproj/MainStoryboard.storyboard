@@ -325,6 +325,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="hqB-Ea-O1h">
                                 <rect key="frame" x="18" y="345" width="276" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="2" eventType="valueChanged" id="9Bu-Hz-xhe"/>
+                                </connections>
                             </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -365,6 +368,7 @@
                 <relationship kind="action" name="deal:"/>
                 <relationship kind="action" name="flipCard:" candidateClass="UIButton"/>
                 <relationship kind="action" name="matchReqChanged:" candidateClass="UISegmentedControl"/>
+                <relationship kind="action" name="sliderValueChanged:" candidateClass="UISlider"/>
                 <relationship kind="outlet" name="cardDescLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="flipsLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="matchNumSwitch" candidateClass="UISegmentedControl"/>
