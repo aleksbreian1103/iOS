@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		83B065A116BBEEC600C27FFE /* CardBack.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 83B065A016BBEEC600C27FFE /* CardBack.jpg */; };
 		83EEBE4816B93A26002181E3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83EEBE4716B93A26002181E3 /* UIKit.framework */; };
 		83EEBE4A16B93A26002181E3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83EEBE4916B93A26002181E3 /* Foundation.framework */; };
 		83EEBE4C16B93A26002181E3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83EEBE4B16B93A26002181E3 /* CoreGraphics.framework */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		83B065A016BBEEC600C27FFE /* CardBack.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = CardBack.jpg; sourceTree = "<group>"; };
 		83EEBE4416B93A26002181E3 /* Matchismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matchismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83EEBE4716B93A26002181E3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		83EEBE4916B93A26002181E3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -110,6 +112,7 @@
 		83EEBE4E16B93A26002181E3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				83B065A016BBEEC600C27FFE /* CardBack.jpg */,
 				83EEBE5616B93A26002181E3 /* CardGameAppDelegate.h */,
 				83EEBE5716B93A26002181E3 /* CardGameAppDelegate.m */,
 				83EEBE4F16B93A26002181E3 /* Matchismo-Info.plist */,
@@ -197,6 +200,7 @@
 				83EEBE5C16B93A26002181E3 /* Default@2x.png in Resources */,
 				83EEBE5E16B93A26002181E3 /* Default-568h@2x.png in Resources */,
 				83EEBE6116B93A26002181E3 /* MainStoryboard.storyboard in Resources */,
+				83B065A116BBEEC600C27FFE /* CardBack.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
