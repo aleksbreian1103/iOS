@@ -12,7 +12,6 @@
 
 @interface CardGameViewController ()
 
-@property (nonatomic) int flipCount;
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (nonatomic) enum GameMode gameMode;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSegmentControl;
@@ -42,6 +41,9 @@
     // Shrinking image to the size of the button
     cardBackImage = [self imageWithImage:cardBackImage convertToSize:[self.cardButtons[0] size]];
     
+    self.statusLabel.text = [self.game.history lastObject];
+    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.game.flipCount];
+    
     for (UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
         [cardButton setTitle:card.contents forState:UIControlStateSelected];
@@ -64,17 +66,16 @@
 // Resets UI and starts a new game
 - (IBAction)deal:(id)sender {
     self.gameModeSegmentControl.enabled = YES;
-    self.flipCount = 0;
-    self.statusLabel.text = @"match cards of the same rank or suite";
-    self.game = nil; // note: new game creates @ accessor for game
+    
+    self.game = nil; // note: new game creates @ accessor for self.game
     [self updateUI];
 }
 
 - (IBAction)flipCard:(UIButton *)sender
 {
     self.gameModeSegmentControl.enabled = NO;
-    self.statusLabel.text = [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
-    self.flipCount++;
+    
+    [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     [self updateUI];
 }
 
@@ -115,18 +116,11 @@
     [self updateUI];
 }
 
-- (void)setFlipCount:(int)flipCount
-{
-    _flipCount = flipCount;
-    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.flipCount];
-}
-
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.statusLabel.text = @"match cards of the same rank or suite";
     
     // Setting insets for images on card buttons
     UIEdgeInsets insets = UIEdgeInsetsMake(5, 6, 5, 6);

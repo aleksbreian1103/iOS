@@ -14,19 +14,20 @@
 // are being matched this game
 @property (nonatomic) enum GameMode gameMode;
 
+@property (nonatomic, readwrite) NSArray *history;
 @property (nonatomic, readwrite) int score;
+@property (nonatomic, readwrite) int flipCount;
 @property (nonatomic, strong) NSMutableArray *cards;
 @property (nonatomic) NSUInteger flipCost;
 @property (nonatomic) NSUInteger matchBonus;
 @property (nonatomic) NSUInteger mismatchPenalty;
-
 @end
 
 @implementation CardMatchingGame
 
 #pragma mark - Game Logic
 
-- (BOOL)checkForGameOver
+- (BOOL)isGameOver
 {
     BOOL gameOver = NO;
     
@@ -61,19 +62,21 @@
                     }
                 }
             }
-            // Subtrcating duplicate counts
+            // Subtracting duplicate counts
             avalableMatches -= [unplayedCards count];
         }
         else if (self.gameMode == threeCards) {
-            // * terrible performance, worse than O(n^3)
-            // worst case for the game ~400+ enumerations/flip,
-            // however need to test on the phone to see if worth optimising
+            // Non-ideal performance,
+            // however could be ok, since this runs only
+            // after there are 8 cards left unplayed
             NSMutableSet *threeCardCombinations = [[NSMutableSet alloc] init];
             for (Card *cardOne in unplayedCards) {
                 for (Card *cardTwo in unplayedCards) {
                     for (Card *cardThree in unplayedCards) {
                         NSSet *threeCardCombination = [NSSet setWithArray:@[cardOne, cardTwo, cardThree]];
                         if ([threeCardCombination count] == 3) {
+                            // We put sets of 3 elements into a set of all triplets
+                            // that way we should eliminate any permutation effects
                             [threeCardCombinations addObject:threeCardCombination];
                         }
                     }
@@ -94,6 +97,9 @@
     // if the game is over
     if (gameOver) {
         self.flipCost = 0;
+        if (![[self.history lastObject] isEqualToString:@"Game Over"]) {
+            self.history = [self.history arrayByAddingObject:@"Game Over"];
+        }
         for (Card *card in unplayedCards) {
             card.faceUp = YES;
         }
@@ -101,7 +107,7 @@
     return gameOver;
 }
 
-- (NSString *)twoCardGameFlipCardAtIndex:(NSUInteger)index
+- (void)twoCardGameFlipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
     NSString *status = nil;
@@ -127,13 +133,19 @@
         }
         card.faceUp = !card.isFaceUp;
     }
-    return [self checkForGameOver] ? @"Game Over" : status;
+    if (![self isGameOver]) {
+        self.flipCount++;
+        if (status) {
+            self.history = [self.history arrayByAddingObject:status];
+        }
+    }
 }
 
-- (NSString *)threeCardGameFlipCardAtIndex:(NSUInteger)index
+- (void)threeCardGameFlipCardAtIndex:(NSUInteger)index
 {
     Card *card = [self cardAtIndex:index];
     NSString *status = nil;
+    
     if (!card.isUnplayable) {
         if (!card.isFaceUp) {
             // otherCards array has to keep 2 other cards,
@@ -167,7 +179,12 @@
         }
         card.faceUp = !card.isFaceUp;
     }
-    return [self checkForGameOver] ? @"Game Over" : status;
+    if (![self isGameOver]) {
+        self.flipCount++;
+        if (status) {
+            self.history = [self.history arrayByAddingObject:status];
+        }
+    }
 }
 
 #pragma mark - Public
@@ -177,13 +194,13 @@
     return (index < self.cards.count) ? self.cards[index] : nil;
 }
 
-- (NSString *)flipCardAtIndex:(NSUInteger)index
+- (void)flipCardAtIndex:(NSUInteger)index
 {
     if (self.gameMode == threeCards) {
-        return [self threeCardGameFlipCardAtIndex:index];
+        [self threeCardGameFlipCardAtIndex:index];
     }
     else {
-        return [self twoCardGameFlipCardAtIndex:index];
+        [self twoCardGameFlipCardAtIndex:index];
     }
 }
 
@@ -195,6 +212,14 @@
         _cards = [[NSMutableArray alloc] init];
     }
     return _cards;
+}
+
+- (NSArray *)history
+{
+    if (!_history) {
+        _history = [[NSArray alloc] init];
+    }
+    return _history;
 }
 
 #pragma mark - Initializers

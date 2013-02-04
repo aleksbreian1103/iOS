@@ -16,12 +16,15 @@ enum GameMode {
 
 @interface CardMatchingGame : NSObject
 
+// History keeps short descriptions of players actions
+@property (nonatomic, readonly) NSArray *history; // of NSString
 @property (nonatomic, readonly) int score;
+@property (nonatomic, readonly) int flipCount;
 
 - (id)initWithCardCount:(NSUInteger)cardCount andGameMode:(enum GameMode)gameMode usingDeck:(Deck *)deck;
 
 
-- (NSString *)flipCardAtIndex:(NSUInteger)index;
+- (void)flipCardAtIndex:(NSUInteger)index;
 - (Card *)cardAtIndex:(NSUInteger)index;
 
 
