@@ -113,6 +113,7 @@
     NSString *status = nil;
     if (!card.isUnplayable) {
         if (!card.isFaceUp) {
+            status = [NSString stringWithFormat:@"lost 1 point when flipped %@", card];
             for (Card *otherCard in self.cards) {
                 if (otherCard.isFaceUp && !otherCard.isUnplayable) {
                     int matchScore = [card match:@[otherCard]];
@@ -148,6 +149,7 @@
     
     if (!card.isUnplayable) {
         if (!card.isFaceUp) {
+            status = [NSString stringWithFormat:@"lost 1 point when flipped %@", card];
             // otherCards array has to keep 2 other cards,
             // since this is a three card flip logic
             NSMutableArray *otherCards = [[NSMutableArray alloc] init];
@@ -217,7 +219,7 @@
 - (NSArray *)history
 {
     if (!_history) {
-        _history = [[NSArray alloc] init];
+        _history = @[@"match cards for rank or suit"];
     }
     return _history;
 }

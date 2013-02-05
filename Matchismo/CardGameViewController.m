@@ -12,6 +12,7 @@
 
 @interface CardGameViewController ()
 
+@property (weak, nonatomic) IBOutlet UISlider *historySlider;
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (nonatomic) enum GameMode gameMode;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *gameModeSegmentControl;
@@ -42,7 +43,16 @@
     cardBackImage = [self imageWithImage:cardBackImage convertToSize:[self.cardButtons[0] size]];
     
     self.statusLabel.text = [self.game.history lastObject];
+    self.historySlider.maximumValue = [self.game.history count] - 1;
+    self.historySlider.value = self.historySlider.maximumValue;
     self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.game.flipCount];
+    
+    if ([[self.game.history lastObject] isEqualToString:@"Game Over"]) {
+        self.gameModeSegmentControl.enabled = YES;
+        self.gameModeSegmentControl.alpha = 1.0;
+        self.historySlider.enabled = NO;
+        self.historySlider.alpha = 0.0;
+    }
     
     for (UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
@@ -66,14 +76,24 @@
 // Resets UI and starts a new game
 - (IBAction)deal:(id)sender {
     self.gameModeSegmentControl.enabled = YES;
+    self.gameModeSegmentControl.alpha = 1.0;
+    self.historySlider.enabled = NO;
+    self.historySlider.alpha = 0.0;
     
     self.game = nil; // note: new game creates @ accessor for self.game
     [self updateUI];
 }
 
+- (IBAction)slideThruHistory:(UISlider *)sender {
+    self.statusLabel.text = self.game.history[(int)sender.value];
+}
+
 - (IBAction)flipCard:(UIButton *)sender
 {
+    self.historySlider.enabled = YES;
+    self.historySlider.alpha = 1.0;
     self.gameModeSegmentControl.enabled = NO;
+    self.gameModeSegmentControl.alpha = 0.0;
     
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     [self updateUI];
@@ -121,6 +141,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.gameModeSegmentControl.enabled = YES;
+    self.gameModeSegmentControl.alpha = 1.0;
+    self.historySlider.enabled = NO;
+    self.historySlider.alpha = 0.0;
+    self.historySlider.minimumValue = 0.0;
+    self.statusLabel.text = @"match cards for rank or suit";
     
     // Setting insets for images on card buttons
     UIEdgeInsets insets = UIEdgeInsetsMake(5, 6, 5, 6);
