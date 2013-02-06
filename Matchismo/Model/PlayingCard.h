@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) NSString *suit;
 @property (nonatomic) NSUInteger rank;
+@property (nonatomic, strong) UIImage *faceImage;
 
 + (NSArray *)validSuits;
 + (NSUInteger)maxRank;

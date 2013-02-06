@@ -113,7 +113,7 @@
     NSString *status = nil;
     if (!card.isUnplayable) {
         if (!card.isFaceUp) {
-            status = [NSString stringWithFormat:@"lost 1 point when flipped %@", card];
+            status = [NSString stringWithFormat:@"lost 1 point for flipping %@", card];
             for (Card *otherCard in self.cards) {
                 if (otherCard.isFaceUp && !otherCard.isUnplayable) {
                     int matchScore = [card match:@[otherCard]];
@@ -126,7 +126,7 @@
                     else {
                         otherCard.faceUp = NO;
                         self.score -= self.mismatchPenalty;
-                        status = [NSString stringWithFormat:@"%@ and %@ don't match: %d points penalty", card, otherCard, self.mismatchPenalty];
+                        status = [NSString stringWithFormat:@"%@ and %@ don't match: -%d points", card, otherCard, self.mismatchPenalty];
                     }
                 }
             }
@@ -149,7 +149,7 @@
     
     if (!card.isUnplayable) {
         if (!card.isFaceUp) {
-            status = [NSString stringWithFormat:@"lost 1 point when flipped %@", card];
+            status = [NSString stringWithFormat:@"lost 1 point for flipping %@", card];
             // otherCards array has to keep 2 other cards,
             // since this is a three card flip logic
             NSMutableArray *otherCards = [[NSMutableArray alloc] init];
@@ -172,7 +172,7 @@
                                 card.faceUp = NO;
                             }
                             self.score -= self.mismatchPenalty;
-                            status = [NSString stringWithFormat:@"%@ %@ %@ don't match: %d points penalty", card, otherCards[0], otherCards[1], self.mismatchPenalty];
+                            status = [NSString stringWithFormat:@"%@ %@ %@ don't match: -%d points", card, otherCards[0], otherCards[1], self.mismatchPenalty];
                         }
                     }
                 }

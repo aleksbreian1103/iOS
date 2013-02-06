@@ -16,30 +16,36 @@
 {
     int score = 0;
     
-    // Two card match
-    if (otherCards.count == 1) {
-        PlayingCard *otherCard = [otherCards lastObject];
-        if ([otherCard.suit isEqualToString:self.suit]) {
-            score = 2;
+    if ([otherCards count] > 0) {
+        // Initial assumption that all other
+        // cards match with this card
+        BOOL matchedSuit = YES;
+        BOOL matchedRank = YES;
+        
+        for (id card in otherCards) { 
+            if ([card isKindOfClass:[PlayingCard class]]) {
+                PlayingCard *playingCard = (PlayingCard *)card;
+                
+                // If atleast one card doesn't match
+                // we mark initial assumption as false
+                if(![self.suit isEqualToString: playingCard.suit]){
+                    matchedSuit = NO;
+                }
+                if(self.rank != playingCard.rank){
+                    matchedRank = NO;
+                }
+                
+            }
         }
-        else if (otherCard.rank == self.rank) {
-            score = 4;
-        }
-    }
-    // Three card match
-    else if (otherCards.count == 2) {
-        PlayingCard *otherCardOne = otherCards[0];
-        PlayingCard *otherCardTwo = otherCards[1];
-        if ([otherCardOne.suit isEqualToString:self.suit] && [otherCardTwo.suit isEqualToString:self.suit]) {
-            score = 4;
-        }
-        else if (otherCardOne.rank == self.rank && otherCardTwo.rank == self.rank) {
-            score = 8;
-        }
+        // If initial assuptions hold, match returns the score
+        // note: only one assuption may stay true!
+        score += matchedSuit ? 2 * [otherCards count] : 0;
+        score += matchedRank ? 4 * [otherCards count] : 0;
     }
     
     return score;
 }
+
 
 #pragma mark - Utility
 
@@ -67,6 +73,25 @@
 }
 
 #pragma mark - Accessors
+
+- (UIImage*)faceImage
+{
+    if (!_faceImage) {
+        NSDictionary *suitNames = @{@"♥":@"heart",
+                                    @"♦":@"diamond",
+                                    @"♠":@"spade",
+                                    @"♣":@"club"};
+        // Card image name format:
+        // suite(name)-rank(number)
+        // e.g. "diamond-13"
+        NSString *suitName = [suitNames objectForKey:self.suit];
+        if (suitName) {
+            NSString *imageName = [NSString stringWithFormat:@"%@-%d", suitName, self.rank];
+            _faceImage = [UIImage imageNamed:imageName];
+        }
+    }
+    return _faceImage;
+}
 
 - (void)setRank:(NSUInteger)rank
 {

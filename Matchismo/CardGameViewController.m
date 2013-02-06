@@ -9,6 +9,8 @@
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
+#import "PlayingCard.h" 
+#import "Utilities.h"
 
 @interface CardGameViewController ()
 
@@ -25,48 +27,41 @@
 
 @implementation CardGameViewController
 
-
-// Utility method to resize images
-- (UIImage *)imageWithImage:(UIImage *)image convertToSize:(CGSize)size {
-    UIGraphicsBeginImageContext(size);
-    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return destImage;
-}
-
 // Synchronises Model with the View
 - (void)updateUI
-{
-    UIImage *cardBackImage = [UIImage imageNamed:@"CardBack.jpg"];
-    // Shrinking image to the size of the button
-    cardBackImage = [self imageWithImage:cardBackImage convertToSize:[self.cardButtons[0] size]];
-    
+{    
     self.statusLabel.text = [self.game.history lastObject];
-    self.historySlider.maximumValue = [self.game.history count] - 1;
-    self.historySlider.value = self.historySlider.maximumValue;
     self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", self.game.flipCount];
     
-    if ([[self.game.history lastObject] isEqualToString:@"Game Over"]) {
-        self.gameModeSegmentControl.enabled = YES;
-        self.gameModeSegmentControl.alpha = 1.0;
-        self.historySlider.enabled = NO;
-        self.historySlider.alpha = 0.0;
-    }
+    self.historySlider.maximumValue = [self.game.history count] - 1;
+    self.historySlider.value = self.historySlider.maximumValue;
     
     for (UIButton *cardButton in self.cardButtons) {
-        Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+        
+        // We assume that the cards in the model are PlayingCards,
+        // because we need card.faceImage of PlayingCard
+        PlayingCard *card = (PlayingCard *)[self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
+        
         [cardButton setTitle:card.contents forState:UIControlStateSelected];
         [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
+        
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
-        cardButton.alpha = card.isUnplayable ? 0.3 : 1.0;
-        if (!cardButton.selected){
-            [cardButton setImage:cardBackImage forState:UIControlStateNormal];
+        cardButton.alpha = card.isUnplayable ? 0.3 : 0.97;
+        
+        if (card.isFaceUp) {
+            // Shrinking cardFaceImage the size of the button
+            UIImage *cardFaceImage = [Utilities imageWithImage:card.faceImage convertToSize:[self.cardButtons[0] size]];
+            // and then settings it as an image for the button
+            [cardButton setImage:cardFaceImage forState:UIControlStateNormal];
         }
         else {
-            [cardButton setImage:nil forState:UIControlStateNormal];
+            // Shrinking cardBackImage the size of the button
+            UIImage *cardBackImage = [Utilities imageWithImage:[UIImage imageNamed:@"card-back.png"] convertToSize:[self.cardButtons[0] size]];
+            // and then settings it as an image for the button
+            [cardButton setImage:cardBackImage forState:UIControlStateNormal];
         }
+
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
 }
@@ -90,12 +85,22 @@
 
 - (IBAction)flipCard:(UIButton *)sender
 {
+    // Animating the flip
+    [UIView beginAnimations:@"flipCard" context:nil];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
+                           forView:sender
+                             cache:YES];
+    [UIView setAnimationDuration:0.23];
+    [UIView commitAnimations];
+    
     self.historySlider.enabled = YES;
     self.historySlider.alpha = 1.0;
     self.gameModeSegmentControl.enabled = NO;
     self.gameModeSegmentControl.alpha = 0.0;
     
+    // Updating the Model
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
+    // and syncing it with view
     [self updateUI];
 }
 
@@ -142,6 +147,7 @@
 {
     [super viewDidLoad];
     
+    // Settings initial parameters for Views
     self.gameModeSegmentControl.enabled = YES;
     self.gameModeSegmentControl.alpha = 1.0;
     self.historySlider.enabled = NO;
@@ -149,11 +155,8 @@
     self.historySlider.minimumValue = 0.0;
     self.statusLabel.text = @"match cards for rank or suit";
     
-    // Setting insets for images on card buttons
-    UIEdgeInsets insets = UIEdgeInsetsMake(5, 6, 5, 6);
-    for (UIButton *cardButton in self.cardButtons) {
-        [cardButton setImageEdgeInsets:insets];
-    }
+    // Settings background
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"table-background"]];
 }
 
 @end
