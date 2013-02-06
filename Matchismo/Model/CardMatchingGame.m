@@ -7,6 +7,7 @@
 //
 
 #import "CardMatchingGame.h"
+#import "PlayingCard.h"
 
 @interface CardMatchingGame()
 
@@ -29,7 +30,7 @@
 
 - (BOOL)isGameOver
 {
-    BOOL gameOver = NO;
+    BOOL gameOver = YES;
     
     // Getting an array of cards
     // that haven't been played yet
@@ -39,6 +40,7 @@
             [unplayedCards addObject:card];
         }
     }
+    
     // If there is less cards than needed for a match then
     // it's a game over (gameMode = 2/3 for twoCard/threeCard)
     if ([unplayedCards count] < self.gameMode) {
@@ -49,52 +51,49 @@
     else if ([unplayedCards count] > 8) {
         gameOver = NO;
     }
-    // Code below checks for avalable matches,
-    // if there are none, then the game is over
     else {
-        NSUInteger avalableMatches = 0;
         
-        if (self.gameMode == twoCards) {
-            for (Card *cardOne in unplayedCards) {
-                for (Card *cardTwo in unplayedCards) {
-                    if([cardOne match:@[cardTwo]]) {
-                        avalableMatches++;
-                    }
-                }
-            }
-            // Subtracting duplicate counts
-            avalableMatches -= [unplayedCards count];
+        // Dictionaries will hold the number of avalable suits and ranks
+        NSMutableDictionary *ranks = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary *suits = [[NSMutableDictionary alloc] init];
+        
+        // Initiating
+        for (NSString *rank in [PlayingCard rankStrings]) {
+            [ranks setObject:@0 forKey:rank];
         }
-        else if (self.gameMode == threeCards) {
-            // Non-ideal performance,
-            // however could be ok, since this runs only
-            // after there are 8 cards left unplayed
-            NSMutableSet *threeCardCombinations = [[NSMutableSet alloc] init];
-            for (Card *cardOne in unplayedCards) {
-                for (Card *cardTwo in unplayedCards) {
-                    for (Card *cardThree in unplayedCards) {
-                        NSSet *threeCardCombination = [NSSet setWithArray:@[cardOne, cardTwo, cardThree]];
-                        if ([threeCardCombination count] == 3) {
-                            // We put sets of 3 elements into a set of all triplets
-                            // that way we should eliminate any permutation effects
-                            [threeCardCombinations addObject:threeCardCombination];
-                        }
-                    }
-                }
-            }
-            for (NSSet *cardTrioS in [threeCardCombinations allObjects]) {
-                NSArray *cardTrio = [cardTrioS allObjects];
-                if ([cardTrio[0] match:@[cardTrio[1], cardTrio[2]]]) {
-                    avalableMatches++;
-                }
-            }
+        for (NSString *suit in [PlayingCard validSuits]) {
+            [suits setObject:@0 forKey:suit];
         }
-    
-        gameOver = (avalableMatches) ? NO : YES; // no avalable matches = game over
-    }
+        
+        // Filling with values
+        for (PlayingCard *card in unplayedCards) {
+            NSNumber *rankNum = [ranks objectForKey:[PlayingCard rankStrings][card.rank]];
+            NSNumber *suitNum = [suits objectForKey:card.suit];
+            rankNum = [NSNumber numberWithInt:[rankNum intValue] + 1];
+            suitNum = [NSNumber numberWithInt:[suitNum intValue] + 1];
+            [ranks setObject:rankNum forKey:[PlayingCard rankStrings][card.rank]];
+            [suits setObject:suitNum forKey:card.suit];
+        }
+        
 
-    // Disabling some game fatures
-    // if the game is over
+        // If there are enouch equal rank or suits for
+        // a match then the game can no be over
+        for (NSString *key in suits) {
+            if ([[suits objectForKey:key] intValue] >= self.gameMode) {
+                gameOver = NO;
+                break;
+            }
+        }
+        if (gameOver) {
+            for (NSString *key in ranks) {
+                if ([[ranks objectForKey:key] intValue] >= self.gameMode) {
+                    gameOver = NO;
+                    break;
+                }
+            }
+        }
+    }
+    // Reacting to game over
     if (gameOver) {
         self.flipCost = 0;
         if (![[self.history lastObject] isEqualToString:@"Game Over"]) {
@@ -107,88 +106,6 @@
     return gameOver;
 }
 
-- (void)twoCardGameFlipCardAtIndex:(NSUInteger)index
-{
-    Card *card = [self cardAtIndex:index];
-    NSString *status = nil;
-    if (!card.isUnplayable) {
-        if (!card.isFaceUp) {
-            status = [NSString stringWithFormat:@"lost 1 point for flipping %@", card];
-            for (Card *otherCard in self.cards) {
-                if (otherCard.isFaceUp && !otherCard.isUnplayable) {
-                    int matchScore = [card match:@[otherCard]];
-                    if (matchScore) {
-                        otherCard.unplayable = YES;
-                        card.unplayable = YES;
-                        self.score += matchScore * self.matchBonus;
-                        status = [NSString stringWithFormat:@"matched %@ and %@ for %d points", card, otherCard, matchScore * self.matchBonus];
-                    }
-                    else {
-                        otherCard.faceUp = NO;
-                        self.score -= self.mismatchPenalty;
-                        status = [NSString stringWithFormat:@"%@ and %@ don't match: -%d points", card, otherCard, self.mismatchPenalty];
-                    }
-                }
-            }
-            self.score -= self.flipCost;
-        }
-        card.faceUp = !card.isFaceUp;
-    }
-    if (![self isGameOver]) {
-        self.flipCount++;
-        if (status) {
-            self.history = [self.history arrayByAddingObject:status];
-        }
-    }
-}
-
-- (void)threeCardGameFlipCardAtIndex:(NSUInteger)index
-{
-    Card *card = [self cardAtIndex:index];
-    NSString *status = nil;
-    
-    if (!card.isUnplayable) {
-        if (!card.isFaceUp) {
-            status = [NSString stringWithFormat:@"lost 1 point for flipping %@", card];
-            // otherCards array has to keep 2 other cards,
-            // since this is a three card flip logic
-            NSMutableArray *otherCards = [[NSMutableArray alloc] init];
-            for (Card *otherCard in self.cards) {
-                if (otherCard.isFaceUp && !otherCard.isUnplayable) {
-                    [otherCards addObject:otherCard];
-                    if (otherCards.count == 2)
-                    {
-                        int matchScore = [card match:otherCards];
-                        if (matchScore) {
-                            for (Card *card in otherCards) {
-                                card.unplayable = YES;
-                            }
-                            card.unplayable = YES;
-                            self.score += matchScore * self.matchBonus;
-                            status = [NSString stringWithFormat:@"matched %@ %@ %@ for %d points", card, otherCards[0], otherCards[1], matchScore * self.matchBonus];
-                        }
-                        else {
-                            for (Card *card in otherCards) {
-                                card.faceUp = NO;
-                            }
-                            self.score -= self.mismatchPenalty;
-                            status = [NSString stringWithFormat:@"%@ %@ %@ don't match: -%d points", card, otherCards[0], otherCards[1], self.mismatchPenalty];
-                        }
-                    }
-                }
-            }
-            self.score -= self.flipCost;
-        }
-        card.faceUp = !card.isFaceUp;
-    }
-    if (![self isGameOver]) {
-        self.flipCount++;
-        if (status) {
-            self.history = [self.history arrayByAddingObject:status];
-        }
-    }
-}
-
 #pragma mark - Public
 
 - (Card *)cardAtIndex:(NSUInteger)index
@@ -198,11 +115,58 @@
 
 - (void)flipCardAtIndex:(NSUInteger)index
 {
-    if (self.gameMode == threeCards) {
-        [self threeCardGameFlipCardAtIndex:index];
+    Card *card = [self cardAtIndex:index];
+    NSString *status = nil;
+    
+    if (!card.isUnplayable) {
+        if (!card.isFaceUp) {
+            status = [NSString stringWithFormat:@"lost 1 point for flipping %@", card];
+            
+            NSMutableArray *otherCards = [[NSMutableArray alloc] init];
+            
+            for (Card *otherCard in self.cards) {
+                if (otherCard.isFaceUp && !otherCard.isUnplayable) {
+                    
+                    [otherCards addObject:otherCard];
+                    
+                    // gameMode = 2/3 for twoCard/threeCard
+                    if (otherCards.count == self.gameMode - 1)
+                    {
+                        int matchScore = [card match:otherCards];
+                        if (matchScore) {
+                            for (Card *card in otherCards) {
+                                card.unplayable = YES;
+                            }
+                            card.unplayable = YES;
+                            
+                            self.score += matchScore * self.matchBonus;
+                            status = [NSString stringWithFormat:@"matched %@ %@ for %d points",
+                                      card,
+                                      [otherCards componentsJoinedByString:@" "],
+                                      matchScore * self.matchBonus];
+                        }
+                        else {
+                            for (Card *card in otherCards) {
+                                card.faceUp = NO;
+                            }
+                            self.score -= self.mismatchPenalty;
+                            status = [NSString stringWithFormat:@"%@ %@ don't match: -%d points",
+                                      card,
+                                      [otherCards componentsJoinedByString:@" "],
+                                      self.mismatchPenalty];
+                        }
+                    }
+                }
+            }
+            self.score -= self.flipCost;
+        }
+        card.faceUp = !card.isFaceUp;
     }
-    else {
-        [self twoCardGameFlipCardAtIndex:index];
+    if (![self isGameOver]) {
+        self.flipCount++;
+        if (status) {
+            self.history = [self.history arrayByAddingObject:status];
+        }
     }
 }
 

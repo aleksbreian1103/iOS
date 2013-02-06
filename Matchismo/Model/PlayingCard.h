@@ -15,6 +15,7 @@
 @property (nonatomic) NSUInteger rank;
 @property (nonatomic, strong) UIImage *faceImage;
 
++ (NSArray *)rankStrings;
 + (NSArray *)validSuits;
 + (NSUInteger)maxRank;
 
