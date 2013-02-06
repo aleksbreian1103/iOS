@@ -530,7 +530,7 @@
 			attributes = {
 				CLASSPREFIX = CardGame;
 				LastUpgradeCheck = 0460;
-				ORGANIZATIONNAME = "Nikita Kukushkin";
+				ORGANIZATIONNAME = ClearStoneGroup;
 			};
 			buildConfigurationList = 83EEBE3F16B93A26002181E3 /* Build configuration list for PBXProject "Matchismo" */;
 			compatibilityVersion = "Xcode 3.2";

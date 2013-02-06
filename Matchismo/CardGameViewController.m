@@ -2,9 +2,7 @@
 //  CardGameViewController.m
 //  Matchismo
 //
-//  Created by Nikita Kukushkin on 30/01/2013.
-//  Copyright (c) 2013 Nikita Kukushkin. All rights reserved.
-//
+
 
 #import "CardGameViewController.h"
 #import "PlayingCardDeck.h"
@@ -42,8 +40,8 @@
         // because we need card.faceImage of PlayingCard
         PlayingCard *card = (PlayingCard *)[self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];
         
-        [cardButton setTitle:card.contents forState:UIControlStateSelected];
-        [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
+       // [cardButton setTitle:card.contents forState:UIControlStateSelected];
+      //  [cardButton setTitle:card.contents forState:UIControlStateSelected|UIControlStateDisabled];
         
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
