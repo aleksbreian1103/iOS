@@ -330,7 +330,7 @@
                                 </connections>
                             </slider>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.95607235901824228" blue="0.91528375261326744" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <outlet property="cardDescLabel" destination="g7J-Bk-PUm" id="9hg-QH-2W4"/>
