@@ -26,6 +26,7 @@
 		BE73014516B248B200E2E872 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = BE73014416B248B200E2E872 /* PlayingCardDeck.m */; };
 		BEBBA9DE16BA3DFD001982ED /* th-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BEBBA9DD16BA3DFD001982ED /* th-1.jpeg */; };
 		BEBBA9E016BA3F63001982ED /* th-2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BEBBA9DF16BA3F63001982ED /* th-2.jpeg */; };
+		BEC8B48416C35C470086DF17 /* SetCard.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC8B48316C35C470086DF17 /* SetCard.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,8 @@
 		BE73014416B248B200E2E872 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = model/PlayingCardDeck.m; sourceTree = "<group>"; };
 		BEBBA9DD16BA3DFD001982ED /* th-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "th-1.jpeg"; sourceTree = "<group>"; };
 		BEBBA9DF16BA3F63001982ED /* th-2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "th-2.jpeg"; path = "../../../../../Downloads/th-2.jpeg"; sourceTree = "<group>"; };
+		BEC8B48216C35C470086DF17 /* SetCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetCard.h; path = model/SetCard.h; sourceTree = "<group>"; };
+		BEC8B48316C35C470086DF17 /* SetCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetCard.m; path = model/SetCard.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +148,8 @@
 				BE73014116B242AC00E2E872 /* PlayingCard.m */,
 				BE73014316B248B200E2E872 /* PlayingCardDeck.h */,
 				BE73014416B248B200E2E872 /* PlayingCardDeck.m */,
+				BEC8B48216C35C470086DF17 /* SetCard.h */,
+				BEC8B48316C35C470086DF17 /* SetCard.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 				BE73014216B242AC00E2E872 /* PlayingCard.m in Sources */,
 				BE73014516B248B200E2E872 /* PlayingCardDeck.m in Sources */,
 				BE29BA3516B9FD4900444F84 /* CardMatchingGame.m in Sources */,
+				BEC8B48416C35C470086DF17 /* SetCard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
