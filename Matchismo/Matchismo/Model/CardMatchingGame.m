@@ -44,7 +44,7 @@
 
 - (Card *) cardAtIndex:(NSUInteger)index
 {
-    return (index < self.cards.count ? self.cards[index] : nil);
+    return (index < self.cards.count) ? self.cards[index] : nil;
 }
 
 #define FLIP_COST 1
