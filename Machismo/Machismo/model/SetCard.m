@@ -18,7 +18,7 @@
 
 + (NSArray *) validSymbols
 {
-    return @[@"Diamond", @"Sqiggle", @"Oval"];
+    return @[@"Diamond", @"Squiggle", @"Oval"];
 }
 
 + (NSArray *) validShadings
