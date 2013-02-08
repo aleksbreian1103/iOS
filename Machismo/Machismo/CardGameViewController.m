@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *cardDescLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *matchNumSwitch;
 @property (nonatomic) float sliderValue;
@@ -82,7 +83,7 @@
 
 - (void) updateUI
 {
-    UIImage *image = [UIImage imageNamed:@"th-2.jpeg"];
+    UIImage *image = [UIImage imageNamed:@"th-1.jpeg"];
     
     for (UIButton *cardButton in self.cardButtons) {
         Card *card = [self.game cardAtIndex:[self.cardButtons indexOfObject:cardButton]];

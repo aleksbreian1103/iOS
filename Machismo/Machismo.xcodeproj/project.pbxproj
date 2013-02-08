@@ -25,8 +25,15 @@
 		BE73014216B242AC00E2E872 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = BE73014116B242AC00E2E872 /* PlayingCard.m */; };
 		BE73014516B248B200E2E872 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = BE73014416B248B200E2E872 /* PlayingCardDeck.m */; };
 		BEBBA9DE16BA3DFD001982ED /* th-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BEBBA9DD16BA3DFD001982ED /* th-1.jpeg */; };
+<<<<<<< HEAD
+		BEBBA9E316BA5117001982ED /* GameTurnHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBBA9E216BA5117001982ED /* GameTurnHistory.m */; };
+=======
 		BEBBA9E016BA3F63001982ED /* th-2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BEBBA9DF16BA3F63001982ED /* th-2.jpeg */; };
+<<<<<<< HEAD
 		BEC8B48416C35C470086DF17 /* SetCard.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC8B48316C35C470086DF17 /* SetCard.m */; };
+=======
+>>>>>>> 4217e4574687ba4219f1cafc7a9811dbb6a6f8b2
+>>>>>>> master
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,9 +65,17 @@
 		BE73014316B248B200E2E872 /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCardDeck.h; path = model/PlayingCardDeck.h; sourceTree = "<group>"; };
 		BE73014416B248B200E2E872 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = model/PlayingCardDeck.m; sourceTree = "<group>"; };
 		BEBBA9DD16BA3DFD001982ED /* th-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "th-1.jpeg"; sourceTree = "<group>"; };
+<<<<<<< HEAD
+		BEBBA9E116BA5117001982ED /* GameTurnHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTurnHistory.h; sourceTree = "<group>"; };
+		BEBBA9E216BA5117001982ED /* GameTurnHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTurnHistory.m; sourceTree = "<group>"; };
+=======
 		BEBBA9DF16BA3F63001982ED /* th-2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "th-2.jpeg"; path = "../../../../../Downloads/th-2.jpeg"; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		BEC8B48216C35C470086DF17 /* SetCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetCard.h; path = model/SetCard.h; sourceTree = "<group>"; };
 		BEC8B48316C35C470086DF17 /* SetCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetCard.m; path = model/SetCard.m; sourceTree = "<group>"; };
+=======
+>>>>>>> 4217e4574687ba4219f1cafc7a9811dbb6a6f8b2
+>>>>>>> master
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +122,11 @@
 		BE73011C16B2292300E2E872 /* Machismo */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				BE2A4BDF16BCF41C00A81A68 /* cardsymbols.jpeg */,
 				BEBBA9DF16BA3F63001982ED /* th-2.jpeg */,
+=======
+>>>>>>> master
 				BEBBA9DD16BA3DFD001982ED /* th-1.jpeg */,
 				BE73012E16B2292300E2E872 /* MainStoryboard.storyboard */,
 				BE73013F16B2334900E2E872 /* Model */,
@@ -212,8 +230,11 @@
 				BE73012D16B2292300E2E872 /* Default-568h@2x.png in Resources */,
 				BE73013016B2292300E2E872 /* MainStoryboard.storyboard in Resources */,
 				BEBBA9DE16BA3DFD001982ED /* th-1.jpeg in Resources */,
+<<<<<<< HEAD
 				BEBBA9E016BA3F63001982ED /* th-2.jpeg in Resources */,
 				BE2A4BE016BCF41C00A81A68 /* cardsymbols.jpeg in Resources */,
+=======
+>>>>>>> master
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
