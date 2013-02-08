@@ -69,7 +69,7 @@
             }
         }
         
-        if ([faceUpCards count] < self.requiredMatches)
+        if ( [faceUpCards count] < self.requiredMatches)
         {
             self.score -= FLIP_COST;
             self.moveDescription = [NSString stringWithFormat:@"You flipped %@", card.contents];

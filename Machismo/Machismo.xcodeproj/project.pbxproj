@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BE29BA3516B9FD4900444F84 /* CardMatchingGame.m in Sources */ = {isa = PBXBuildFile; fileRef = BE29BA3416B9FD4900444F84 /* CardMatchingGame.m */; };
+		BE2A4BE016BCF41C00A81A68 /* cardsymbols.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BE2A4BDF16BCF41C00A81A68 /* cardsymbols.jpeg */; };
 		BE73011716B2292300E2E872 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE73011616B2292300E2E872 /* UIKit.framework */; };
 		BE73011916B2292300E2E872 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE73011816B2292300E2E872 /* Foundation.framework */; };
 		BE73011B16B2292300E2E872 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE73011A16B2292300E2E872 /* CoreGraphics.framework */; };
@@ -28,12 +29,17 @@
 		BEBBA9E316BA5117001982ED /* GameTurnHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = BEBBA9E216BA5117001982ED /* GameTurnHistory.m */; };
 =======
 		BEBBA9E016BA3F63001982ED /* th-2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = BEBBA9DF16BA3F63001982ED /* th-2.jpeg */; };
+<<<<<<< HEAD
+		BEC8B48416C35C470086DF17 /* SetCard.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC8B48316C35C470086DF17 /* SetCard.m */; };
+=======
 >>>>>>> 4217e4574687ba4219f1cafc7a9811dbb6a6f8b2
+>>>>>>> master
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BE29BA3316B9FD4900444F84 /* CardMatchingGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardMatchingGame.h; sourceTree = "<group>"; };
 		BE29BA3416B9FD4900444F84 /* CardMatchingGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardMatchingGame.m; sourceTree = "<group>"; };
+		BE2A4BDF16BCF41C00A81A68 /* cardsymbols.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cardsymbols.jpeg; sourceTree = "<group>"; };
 		BE73011216B2292300E2E872 /* Machismo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Machismo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE73011616B2292300E2E872 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BE73011816B2292300E2E872 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,7 +70,12 @@
 		BEBBA9E216BA5117001982ED /* GameTurnHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTurnHistory.m; sourceTree = "<group>"; };
 =======
 		BEBBA9DF16BA3F63001982ED /* th-2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "th-2.jpeg"; path = "../../../../../Downloads/th-2.jpeg"; sourceTree = "<group>"; };
+<<<<<<< HEAD
+		BEC8B48216C35C470086DF17 /* SetCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetCard.h; path = model/SetCard.h; sourceTree = "<group>"; };
+		BEC8B48316C35C470086DF17 /* SetCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetCard.m; path = model/SetCard.m; sourceTree = "<group>"; };
+=======
 >>>>>>> 4217e4574687ba4219f1cafc7a9811dbb6a6f8b2
+>>>>>>> master
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +122,11 @@
 		BE73011C16B2292300E2E872 /* Machismo */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
+				BE2A4BDF16BCF41C00A81A68 /* cardsymbols.jpeg */,
+				BEBBA9DF16BA3F63001982ED /* th-2.jpeg */,
+=======
+>>>>>>> master
 				BEBBA9DD16BA3DFD001982ED /* th-1.jpeg */,
 				BE73012E16B2292300E2E872 /* MainStoryboard.storyboard */,
 				BE73013F16B2334900E2E872 /* Model */,
@@ -150,6 +166,8 @@
 				BE73014116B242AC00E2E872 /* PlayingCard.m */,
 				BE73014316B248B200E2E872 /* PlayingCardDeck.h */,
 				BE73014416B248B200E2E872 /* PlayingCardDeck.m */,
+				BEC8B48216C35C470086DF17 /* SetCard.h */,
+				BEC8B48316C35C470086DF17 /* SetCard.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -212,6 +230,11 @@
 				BE73012D16B2292300E2E872 /* Default-568h@2x.png in Resources */,
 				BE73013016B2292300E2E872 /* MainStoryboard.storyboard in Resources */,
 				BEBBA9DE16BA3DFD001982ED /* th-1.jpeg in Resources */,
+<<<<<<< HEAD
+				BEBBA9E016BA3F63001982ED /* th-2.jpeg in Resources */,
+				BE2A4BE016BCF41C00A81A68 /* cardsymbols.jpeg in Resources */,
+=======
+>>>>>>> master
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +253,7 @@
 				BE73014216B242AC00E2E872 /* PlayingCard.m in Sources */,
 				BE73014516B248B200E2E872 /* PlayingCardDeck.m in Sources */,
 				BE29BA3516B9FD4900444F84 /* CardMatchingGame.m in Sources */,
+				BEC8B48416C35C470086DF17 /* SetCard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
