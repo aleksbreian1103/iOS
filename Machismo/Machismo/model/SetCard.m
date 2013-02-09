@@ -18,17 +18,17 @@
 
 + (NSArray *) validSymbols
 {
-    return @[@"Diamond", @"Squiggle", @"Oval"];
+    return @[@"Circle", @"Triangle", @"Square"];
 }
 
 + (NSArray *) validShadings
 {
-    return @[@"Solid", @"Striped", @"Open"];
+    return @[@"Solid", @"Shaded", @"Open"];
 }
 
 + (NSArray *) validColors
 {
-    return @[@"Red", @"Green", @"Purple"];
+    return @[@"Red", @"Green", @"Blue"];
 }
 
 - (void) setNumber: (NSString *) number
@@ -82,6 +82,76 @@
     if ([colorsSet count] == 2) matchScore = 0;
     
     return matchScore;
+}
+
+- (NSAttributedString *) contents
+{
+    NSString *shape;
+    NSMutableAttributedString *rval;
+    
+    if ([self.symbol isEqualToString: @"Circle"])
+    {
+        shape = @"●";
+    }
+    else if ([self.symbol isEqualToString:@"Triangle"])
+    {
+        shape = @"▴";
+    }
+    else if ([self.symbol isEqualToString:@"Square"])
+    {
+        shape = @"■";
+    }
+    
+    if ([self.number isEqualToString:@"2"])
+    {
+        shape = [@[shape, shape] componentsJoinedByString:@""];
+    }
+    else if ([self.number isEqualToString:@"3"])
+    {
+        shape = [@[shape, shape, shape] componentsJoinedByString:@""];
+    }
+    
+    rval = [[NSMutableAttributedString alloc] initWithString:shape];
+    NSRange rval_length = NSMakeRange(0, [rval length]);
+    UIColor *color;
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    
+    if ([self.color isEqualToString:@"Red"])
+    {
+        color = [UIColor redColor];
+    }
+    else if ([self.color isEqualToString:@"Green"])
+    {
+        color = [UIColor greenColor];
+    }
+    else if ([self.color isEqualToString:@"Blue"])
+    {
+        color = [UIColor blueColor];
+    }
+    
+    [dict setObject:color forKey:NSForegroundColorAttributeName];
+    
+    if ([self.shading isEqualToString:@"Open"])
+    {
+        [dict setObject:color forKey:NSStrokeColorAttributeName];
+        [dict setObject:@3.0 forKey:NSStrokeWidthAttributeName];
+    }
+    else if ([self.shading isEqualToString:@"Shaded"])
+    {
+        CGFloat red, blue, green, alpha;
+        [color getRed:&red green:&green blue:&blue alpha:&alpha];
+        
+        UIColor *shaded = [UIColor colorWithRed:red green:green blue:blue alpha:0.25];
+        
+        [dict setObject:shaded forKey:NSForegroundColorAttributeName];
+        [dict setObject:color forKey:NSStrokeColorAttributeName];
+        [dict setObject:@-3.0 forKey:NSStrokeWidthAttributeName];
+    }
+       
+
+    [rval addAttributes:dict range:rval_length];
+    
+    return rval;
 }
 
 @end

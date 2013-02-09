@@ -20,4 +20,6 @@
 + (NSArray *) validShadings;
 + (NSArray *) validColors;
 
+- (NSAttributedString *) contents;
+
 @end
