@@ -14,7 +14,7 @@
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
-@property (nonatomic) int flipCount;
+
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
@@ -123,7 +123,7 @@
 - (IBAction)flipCard:(UIButton *)sender
 {
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject: sender]];
-    self.flipCount++;
+    if (!sender.isSelected && sender.isEnabled) self.flipCount++;
     [self.matchNumSwitch setEnabled:NO];
 
     [self updateUI];

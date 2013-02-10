@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CardGameViewController : UIViewController
-
-
+@property (nonatomic) int flipCount;
 @end
 

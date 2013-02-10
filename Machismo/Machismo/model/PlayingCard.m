@@ -52,7 +52,7 @@
 {
     static NSArray *rankStrings = nil;
     if (!rankStrings) {
-        rankStrings = @[@"?", @"a", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"j", @"q", @"k"];
+        rankStrings = @[@"?", @"A", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"J", @"Q", @"K"];
     }
     return rankStrings;
 }
