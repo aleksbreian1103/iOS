@@ -22,5 +22,6 @@
 @property (nonatomic, strong) NSString *moveDescription;
 @property (nonatomic) int requiredMatches;
 @property (nonatomic, readonly) int score;
+@property (strong, nonatomic) NSMutableArray *cards;
 
 @end

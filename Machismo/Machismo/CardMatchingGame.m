@@ -11,7 +11,7 @@
 #import "PlayingCardDeck.h"
 
 @interface CardMatchingGame()
-@property (strong, nonatomic) NSMutableArray *cards;
+
 @property (nonatomic, readwrite) int score;
 @end
 

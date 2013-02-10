@@ -52,8 +52,14 @@
 
 - (IBAction)flipCard:(id)sender
 {
-    UIButton *card = (UIButton *) sender;
-    NSLog(@"Card at %d flipped", [self.cardButtons indexOfObject:card]);
+    UIButton *cardButton = (UIButton *) sender;
+    int index = [self.cardButtons indexOfObject:cardButton];
+    NSLog(@"Card at %d flipped", index);
+    [self.game flipCardAtIndex:index];
+    if ([self.game cardAtIndex:index].isFaceUp)
+        self.flipCount++;
+    
+    [self updateUI];
 }
 
 
@@ -66,6 +72,9 @@
 - (IBAction)deal:(id)sender
 {
     NSLog(@"Deal clicked");
+    self.game = nil;
+    self.flipCount = 0;
+    [self updateUI];
 }
 
 - (CardMatchingGame *) game
@@ -86,7 +95,27 @@
         SetCard *card = (SetCard *) [self.game cardAtIndex:card_index];
         
         [cardButton setAttributedTitle:[card contents] forState: UIControlStateNormal];
+        
+        cardButton.selected = card.isFaceUp;
+        cardButton.enabled = !card.isUnplayable;
+        
+        cardButton.alpha = 1.00;
+        
+        if (cardButton.isSelected)
+        {
+            cardButton.alpha = 0.20;
+        }
+        if (!cardButton.isEnabled)
+        {
+            cardButton.alpha = 0.00;
+        }
     }
+    
+    [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %d", self.game.score]];
+
+    [self.flipsLabel setText:[NSString stringWithFormat:@"Flips: %d", self.flipCount]];
+    
+    [self.cardDescLabel setText:self.game.moveDescription];
 }
 
 @end

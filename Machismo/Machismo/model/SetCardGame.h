@@ -10,5 +10,5 @@
 #import "CardMatchingGame.h"
 
 @interface SetCardGame : CardMatchingGame
-
+@property (nonatomic, strong) NSMutableAttributedString *moveDescr;
 @end
