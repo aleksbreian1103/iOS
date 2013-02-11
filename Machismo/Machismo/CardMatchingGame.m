@@ -27,7 +27,7 @@
 - (id) initWithCardCount:(NSUInteger)cardCount usingDeck:(Deck *)deck
 {
     self = [super init];
-    
+
     if (self) {
         for (int i=0; i < cardCount; i++) {
             Card *card = [deck drawRandomCard];
@@ -38,6 +38,7 @@
             }
         }
         self.requiredMatches = 2;
+        
     }
     
     return self;

@@ -46,7 +46,7 @@
     else
         self.cardDescLabel.alpha = 1.0;
     
-    self.cardDescLabel.text = [self.moveHistory objectAtIndex: index];
+    [self.cardDescLabel setAttributedText:[self.moveHistory objectAtIndex: index]];
 }
 
 - (IBAction)deal:(id)sender

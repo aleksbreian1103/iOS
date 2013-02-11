@@ -19,9 +19,17 @@
 @property (weak, nonatomic) IBOutlet UILabel *cardDescLabel;
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 @property (strong, nonatomic) CardMatchingGame *game;
+@property (strong, nonatomic) NSMutableArray *moveHistory;
 @end
 
 @implementation SetGameViewController
+
+
+- (NSMutableArray *) moveHistory
+{
+    if (!_moveHistory) _moveHistory = [[NSMutableArray alloc] init];
+    return _moveHistory;
+}
 
 //- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 //{
@@ -32,11 +40,12 @@
 //    return self;
 //}
 //
-//- (void)viewDidLoad
-//{
-//    [super viewDidLoad];
-//	// Do any additional setup after loading the view.
-//}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+    [self updateUI];
+}
 //
 //- (void)didReceiveMemoryWarning
 //{
@@ -58,14 +67,28 @@
     [self.game flipCardAtIndex:index];
     if ([self.game cardAtIndex:index].isFaceUp)
         self.flipCount++;
-    
     [self updateUI];
+    SetCardGame *g = (SetCardGame *) self.game;
+    [self.moveHistory addObject:g.moveAttribDesc];
+    [self.slider setValue:(float) self.flipCount animated:NO];
+    self.cardDescLabel.alpha = 1.0;
 }
 
 
 - (IBAction)sliderValueChanged:(id)sender
 {
-    NSLog(@"Slider value: %f", [self.slider value]);
+    UISlider *sli = (UISlider *) sender;
+    int index = (int) [sli value];
+    NSLog(@"Slider index is: %d", index);
+    
+    if (index < 0 || (index > self.flipCount - 1)) return;
+    
+    if (index < self.flipCount-1)
+        self.cardDescLabel.alpha = 0.3;
+    else
+        self.cardDescLabel.alpha = 1.0;
+    
+    [self.cardDescLabel setAttributedText:[self.moveHistory objectAtIndex: index]];
 }
 
 
@@ -82,6 +105,8 @@
     if (!_game)
     {
         _game = [[SetCardGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[[SetDeck alloc] init]];
+        
+        [self updateUI];
     }
     
     return _game;
@@ -114,8 +139,13 @@
     [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %d", self.game.score]];
 
     [self.flipsLabel setText:[NSString stringWithFormat:@"Flips: %d", self.flipCount]];
+    SetCardGame *g = (SetCardGame *) self.game;
     
-    [self.cardDescLabel setText:self.game.moveDescription];
+    [self.cardDescLabel setAttributedText:g.moveAttribDesc];
+    
+    [self.slider setMinimumValue:0.0f];
+    [self.slider setMaximumValue:(float) self.flipCount];
+    
 }
 
 @end

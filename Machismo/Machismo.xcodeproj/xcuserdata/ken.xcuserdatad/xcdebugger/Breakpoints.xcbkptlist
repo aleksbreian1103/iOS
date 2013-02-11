@@ -7,52 +7,26 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Machismo/model/PlayingCard.m"
-         timestampString = "381299054.119747"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "64"
-         endingLineNumber = "64"
-         landmarkName = "@implementation PlayingCard"
-         landmarkType = "3">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "Machismo/SetGameViewController.m"
-         timestampString = "382163691.426356"
+         timestampString = "382243267.382625"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "95"
-         endingLineNumber = "95"
+         startingLineNumber = "144"
+         endingLineNumber = "144"
          landmarkName = "-updateUI"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Machismo/model/SetDeck.m"
-         timestampString = "382084333.270981"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "36"
-         endingLineNumber = "36"
-         landmarkName = "-init"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Machismo/model/SetCard.m"
-         timestampString = "382166017.049886"
+         filePath = "Machismo/CardGameViewController.m"
+         timestampString = "382242655.668334"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "60"
-         endingLineNumber = "60"
-         landmarkName = "-match:"
+         startingLineNumber = "40"
+         endingLineNumber = "40"
+         landmarkName = "-sliderValueChanged:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
