@@ -14,7 +14,7 @@
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
-@property (nonatomic) int flipCount;
+
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
@@ -46,7 +46,7 @@
     else
         self.cardDescLabel.alpha = 1.0;
     
-    self.cardDescLabel.text = [self.moveHistory objectAtIndex: index];
+    [self.cardDescLabel setAttributedText:[self.moveHistory objectAtIndex: index]];
 }
 
 - (IBAction)deal:(id)sender

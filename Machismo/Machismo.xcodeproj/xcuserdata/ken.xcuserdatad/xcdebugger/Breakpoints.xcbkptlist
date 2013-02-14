@@ -7,13 +7,26 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Machismo/model/PlayingCard.m"
-         timestampString = "381299054.119747"
+         filePath = "Machismo/SetGameViewController.m"
+         timestampString = "382243267.382625"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "64"
-         endingLineNumber = "64"
-         landmarkName = "-setSuit:"
+         startingLineNumber = "144"
+         endingLineNumber = "144"
+         landmarkName = "-updateUI"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Machismo/CardGameViewController.m"
+         timestampString = "382242655.668334"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "40"
+         endingLineNumber = "40"
+         landmarkName = "-sliderValueChanged:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
