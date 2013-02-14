@@ -11,7 +11,7 @@
 #import "PlayingCardDeck.h"
 
 @interface CardMatchingGame()
-@property (strong, nonatomic) NSMutableArray *cards;
+
 @property (nonatomic, readwrite) int score;
 @end
 
@@ -27,7 +27,7 @@
 - (id) initWithCardCount:(NSUInteger)cardCount usingDeck:(Deck *)deck
 {
     self = [super init];
-    
+
     if (self) {
         for (int i=0; i < cardCount; i++) {
             Card *card = [deck drawRandomCard];
@@ -38,6 +38,7 @@
             }
         }
         self.requiredMatches = 2;
+        
     }
     
     return self;
